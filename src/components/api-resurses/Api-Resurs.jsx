@@ -3,6 +3,12 @@ import React, { Component } from 'react';
 class ApiResources extends Component {
 	_baseUrl = 'https://swapi.dev/api/';
 
+	_idExtracting = (item) => {
+		const idRegExp = /\/([0-9]*)\/$/;
+		const id = item.url.match(idRegExp)[1];
+		return id;
+	};
+
 	getResource = async (url = '') => {
 		const response = await fetch(this._baseUrl + url);
 		if (!response.ok) {
@@ -21,8 +27,41 @@ class ApiResources extends Component {
 	getPlanets = async () => {
 		return await this.getResource('planets/');
 	};
-	getPlanet = (id) => {
+	getPlanet = async (id) => {
 		return this.getResource(`planets/${id}/`);
+	};
+
+
+	_trancformPlanet = (planet) => {
+		return {
+			id: this._idExtracting(planet),
+			planetName: planet.name,
+			population: planet.population,
+			rotationPeriod: planet.rotation_period,
+			diameter: planet.diameter
+		};
+	};
+	_transformPerson = (person) => {
+		return {
+			id: this._idExtracting(person),
+			name: person.name,
+			gender: person.gender,
+			birthYear: person.birth_year,
+			eyeColor: person.eye_color
+		};
+	};
+	_transformStarship = (starship) => {
+		return {
+			id: this._idExtracting(starship),
+			name: starship.name,
+			model: starship.model,
+			manufacturer: starship.manufacturer,
+			costInCredits: starship.cost_in_credits,
+			length: starship.length,
+			crew: starship.crew,
+			passengers: starship.passengers,
+			cargoCapacity: starship.cargo_capacity
+		};
 	};
 
 	render() {

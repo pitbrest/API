@@ -5,18 +5,14 @@ import { ApiResources } from '../api-resurses/Api-Resurs';
 
 class RandomPlanet extends Component {
 
-  constructor() {
-    super();
-
-    this.state = {
-      id: 5,
-      img: null,
-      planetName: null,
-      population: null,
-      rotationPeriod: null,
-      diameter: null
-    };
-  }
+  state = {
+    id: null,
+    img: null,
+    planetName: null,
+    population: null,
+    rotationPeriod: null,
+    diameter: null
+  };
 
 
   myApi = new ApiResources();
