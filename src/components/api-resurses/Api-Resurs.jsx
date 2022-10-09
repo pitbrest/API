@@ -8,15 +8,21 @@ class ApiResources extends Component {
 		if (!response.ok) {
 			throw new Error(`Could not fetch ${this._baseUrl + url}, received ${response.status}`);
 		}
-		return response.json();
+		return await response.json();
 	};
 
 	getAllPeople = async () => {
-		return this.getResource('people/');
+		return await this.getResource('people/');
+	};
+	getPerson = (id) => {
+		return this.getResource(`people/${id}/`);
 	};
 
-	getPerson = async (id) => {
-		return this.getResource(`people/${id}`);
+	getPlanets = async () => {
+		return await this.getResource('planets/');
+	};
+	getPlanet = (id) => {
+		return this.getResource(`planets/${id}/`);
 	};
 
 	render() {

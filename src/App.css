@@ -1,0 +1,17 @@
+* {
+  margin: 0 ;
+  padding: 0 ;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none !important;
+}
+li {
+  list-style: none !important;
+}
+body {
+  max-width: 1000px !important;
+  min-height: 100vh !important;
+  margin: 0 auto !important;
+  padding: 10px 20px;
+}
