@@ -1,11 +1,11 @@
 .randomPlanet-container {
-	background: linear-gradient(to right, rgb(67 67 67), rgb(46, 45, 45), rgb(67 67 67));
+	background: linear-gradient(to right, rgb(33 33 33), rgb(61, 61, 61), rgb(33 33 33));
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
 	column-gap: 30px;
 	border-radius: 5px;
-	padding: 1rem;
+	padding: 0.5rem;
 	margin-bottom: 40px;
 }
 .planetInfo-container {

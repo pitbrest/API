@@ -19,37 +19,31 @@ class ApiResources extends Component {
 
 	getAllPeople = async () => {
 		const res = await this.getResource('people/');
-		return res.results;
+		return res.results.map(person => this._transformPerson(person));
 	};
-	getPerson = (id) => {
-		return this.getResource(`people/${id}/`);
+	getPerson = async (id) => {
+		const person = await this.getResource(`people/${id}/`);
+		return this._transformPerson(person);
 	};
 
 	getPlanets = async () => {
 		const res = await this.getResource('planets/');
-		return res.results;
+		return res.results.map(planet => this._trancformPlanet(planet));
 	};
 	getPlanet = async (id) => {
-		return this.getResource(`planets/${id}/`);
+		const planet = await this.getResource(`planets/${id}/`);
+		return this._trancformPlanet(planet);
 	};
 
 	getStarships = async () => {
 		const res = await this.getResource('starships/');
-		return res.results;
+		return res.results.map(ship => this._transformStarship(ship));
 	};
 	getStarship = async (id) => {
-		return this.getResource(`starships/${id}/`);
+		const starShip = await this.getResource(`starships/${id}/`);
+		return this._transformStarship(starShip);
 	};
 
-	_trancformPlanet = (planet) => {
-		return {
-			id: this._idExtracting(planet),
-			planetName: planet.name,
-			population: planet.population,
-			rotationPeriod: planet.rotation_period,
-			diameter: planet.diameter,
-		};
-	};
 	_transformPerson = (person) => {
 		return {
 			id: this._idExtracting(person),
@@ -57,6 +51,15 @@ class ApiResources extends Component {
 			gender: person.gender,
 			birthYear: person.birth_year,
 			eyeColor: person.eye_color,
+		};
+	};
+	_trancformPlanet = (planet) => {
+		return {
+			id: this._idExtracting(planet),
+			planetName: planet.name,
+			population: planet.population,
+			rotationPeriod: planet.rotation_period,
+			diameter: planet.diameter,
 		};
 	};
 	_transformStarship = (starship) => {
