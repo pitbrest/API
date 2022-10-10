@@ -18,19 +18,28 @@ class ApiResources extends Component {
 	};
 
 	getAllPeople = async () => {
-		return await this.getResource('people/');
+		const res = await this.getResource('people/');
+		return res.results;
 	};
 	getPerson = (id) => {
 		return this.getResource(`people/${id}/`);
 	};
 
 	getPlanets = async () => {
-		return await this.getResource('planets/');
+		const res = await this.getResource('planets/');
+		return res.results;
 	};
 	getPlanet = async (id) => {
 		return this.getResource(`planets/${id}/`);
 	};
 
+	getStarships = async () => {
+		const res = await this.getResource('starships/');
+		return res.results;
+	};
+	getStarship = async (id) => {
+		return this.getResource(`starships/${id}/`);
+	};
 
 	_trancformPlanet = (planet) => {
 		return {
@@ -38,7 +47,7 @@ class ApiResources extends Component {
 			planetName: planet.name,
 			population: planet.population,
 			rotationPeriod: planet.rotation_period,
-			diameter: planet.diameter
+			diameter: planet.diameter,
 		};
 	};
 	_transformPerson = (person) => {
@@ -47,7 +56,7 @@ class ApiResources extends Component {
 			name: person.name,
 			gender: person.gender,
 			birthYear: person.birth_year,
-			eyeColor: person.eye_color
+			eyeColor: person.eye_color,
 		};
 	};
 	_transformStarship = (starship) => {
@@ -60,7 +69,7 @@ class ApiResources extends Component {
 			length: starship.length,
 			crew: starship.crew,
 			passengers: starship.passengers,
-			cargoCapacity: starship.cargo_capacity
+			cargoCapacity: starship.cargo_capacity,
 		};
 	};
 

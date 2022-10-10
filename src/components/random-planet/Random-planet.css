@@ -1,37 +1,38 @@
 .randomPlanet-container {
-  background: rgb(51 51 51);
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  column-gap: 30px;
-  border-radius: 5px;
-  padding: 1rem;
-  margin-bottom: 40px;
+	background: linear-gradient(to right, rgb(67 67 67), rgb(46, 45, 45), rgb(67 67 67));
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	column-gap: 30px;
+	border-radius: 5px;
+	padding: 1rem;
+	margin-bottom: 40px;
 }
 .planetInfo-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  row-gap: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	row-gap: 20px;
 }
-.planet-img { 
-  max-width: 40%;
-  height: auto;  
-  object-fit: cover; 
+.planet-img {
+	max-width: 40%;
+	max-height: 200px;
+	height: auto;
+	object-fit: cover;
+	border-radius: 5px;
 }
 .planet-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;  
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 .planetInfo-text {
-  padding: 5px 10px;
-  border-top: 1px solid #868686;
-  margin-bottom: 0;
+	padding: 5px 10px;
+	border-top: 1px solid #868686;
+	margin-bottom: 0;
 }
-.planetInfo-text span{
- padding-left: 10px;
- font-weight: 900;
+.planetInfo-text span {
+	padding-left: 10px;
+	font-weight: 900;
 }
-
