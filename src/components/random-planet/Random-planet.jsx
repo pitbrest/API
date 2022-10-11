@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
 import './Random-planet.css';
 import { Loading } from '../loading/Loading';
+import { Error } from '../error/Error';
 import { ApiResources } from '../api-resurses/Api-Resurs';
 
 class RandomPlanet extends Component {
 	state = {
 		planet: {},
 		isLoading: true,
+		error: false
 	};
 
 	myApi = new ApiResources();
+
+	onError = (e) => {
+		this.setState({
+			error: true,
+			Loading: false
+		});
+	};
 
 	getRandomIntInclusive = (min, max) => {
 		min = Math.ceil(min);
@@ -23,30 +32,30 @@ class RandomPlanet extends Component {
 	};
 
 	updatePlanet = async () => {
-		await this.myApi.getPlanet(await this.getId()).then((planet) =>
-			this.setState({
-				planet: { ...planet, img: `https://starwars-visualguide.com/assets/img/planets/${planet.id}.jpg` },
-				isLoading: false,
-			})
-		);
+		await this.myApi.getPlanet(await this.getId())
+			.then((planet) =>
+				this.setState({
+					planet: { ...planet, img: `https://starwars-visualguide.com/assets/img/planets/${planet.id}.jpg` },
+					isLoading: false,
+				})
+			)
+			.catch(this.onError);
 	};
 
-	planetSlider = () => {
-		setInterval(() => {
-			this.updatePlanet();
-		}, 4000);
-	};
 
 	componentDidMount() {
 		this.updatePlanet();
-		this.planetSlider();
+		this.myInterval = setInterval(this.updatePlanet, 4000);
+	}
+	componentWillUnmount() {
+		clearInterval(this.myInterval);
 	}
 
 	render() {
-		const { planet, isLoading } = this.state;
+		const { planet, isLoading, error } = this.state;
 		return (
 			<div className='randomPlanet-container'>
-				<SectionView planet={planet} isLoading={isLoading} />
+				<SectionView planet={planet} isLoading={isLoading} error={error} />
 			</div>
 		);
 	}
@@ -54,7 +63,10 @@ class RandomPlanet extends Component {
 
 export { RandomPlanet };
 
-const SectionView = ({ planet, isLoading }) => {
+
+const SectionView = ({ planet, isLoading, error }) => {
+
+	if (error) return <Error />;
 	return (
 		<>
 			{isLoading ? (
