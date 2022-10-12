@@ -29,7 +29,7 @@
 }
 .planetInfo-text {
 	padding: 5px 10px;
-	border-top: 1px solid #868686;
+	border-bottom: 1px solid #868686;
 	margin-bottom: 0;
 }
 .planetInfo-text span {

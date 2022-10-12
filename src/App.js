@@ -9,24 +9,24 @@ import './App.css';
 
 class App extends Component {
 	state = {
-		selectedPersonId: null,
+		selectedPersonId: 1
 	};
 
 	listItemHandler = (id) => {
 		this.setState({
-			selectedPerson: id,
+			selectedPersonId: id
 		});
-		console.log(id);
 	};
 
 	render() {
+
 		return (
 			<>
 				<Header />
 				<RandomPlanet />
 				<div className='content-wrapper'>
 					<ListItem listItemHandler={this.listItemHandler} />
-					<PersonDetails personId={this.state.selectedPersonId} />
+					<PersonDetails selectedPersonId={this.state.selectedPersonId} />
 				</div>
 			</>
 		);
