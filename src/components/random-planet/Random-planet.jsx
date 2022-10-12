@@ -8,7 +8,7 @@ class RandomPlanet extends Component {
 	state = {
 		planet: {},
 		isLoading: true,
-		error: false
+		error: false,
 	};
 
 	myApi = new ApiResources();
@@ -16,7 +16,7 @@ class RandomPlanet extends Component {
 	onError = (e) => {
 		this.setState({
 			error: true,
-			Loading: false
+			Loading: false,
 		});
 	};
 
@@ -32,7 +32,8 @@ class RandomPlanet extends Component {
 	};
 
 	updatePlanet = async () => {
-		await this.myApi.getPlanet(await this.getId())
+		await this.myApi
+			.getPlanet(await this.getId())
 			.then((planet) =>
 				this.setState({
 					planet: { ...planet, img: `https://starwars-visualguide.com/assets/img/planets/${planet.id}.jpg` },
@@ -42,13 +43,13 @@ class RandomPlanet extends Component {
 			.catch(this.onError);
 	};
 
-
 	componentDidMount() {
-		this.updatePlanet();
-		this.myInterval = setInterval(this.updatePlanet, 4000);
+		this.myInt = setInterval(() => {
+			this.updatePlanet();
+		}, 4000);
 	}
 	componentWillUnmount() {
-		clearInterval(this.myInterval);
+		clearInterval(this.myInt);
 	}
 
 	render() {
@@ -63,9 +64,7 @@ class RandomPlanet extends Component {
 
 export { RandomPlanet };
 
-
 const SectionView = ({ planet, isLoading, error }) => {
-
 	if (error) return <Error />;
 	return (
 		<>

@@ -10,7 +10,7 @@
 	margin-bottom: 40px;
 }
 .itemList-item {
-	padding: 5px 10px;
+	padding: 8px 10px;
 	width: 100%;
 }
 .itemList-item:not(:last-child) {

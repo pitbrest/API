@@ -1,5 +1,5 @@
 .randomPlanet-container {
-	background: linear-gradient(to right, rgb(33 33 33), rgb(61, 61, 61), rgb(33 33 33));
+	background: linear-gradient(to right, rgb(61, 61, 61), rgb(33 33 33), rgb(61, 61, 61));
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
