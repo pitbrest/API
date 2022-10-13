@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
-import './List-item.css';
+import './Item-list.css';
 import { Loading } from '../loading/Loading';
-import { ApiResources } from '../api-resurses/Api-Resurs';
 
-class ListItem extends Component {
+
+class ItemList extends Component {
 	state = {
-		peopleList: null,
+		itemList: null,
 	};
 
-	myApi = new ApiResources();
+	dataFn = this.props.actionFn;
 
 	componentDidMount() {
-		this.myApi.getAllPeople().then((peopleList) => {
+		this.dataFn().then((itemList) => {
 			this.setState({
-				peopleList: peopleList,
+				itemList: itemList,
 			});
 		});
 	}
 
 	renderItems = () => {
-		return this.state.peopleList.map((item) => (
+		return this.state.itemList.map((item) => (
 			<div className='itemList-item list-group list-group-item list-group-item-action' key={item.id} onClick={() => this.props.listItemHandler(item.id)}>
 				{item.name}
 			</div>
@@ -27,9 +27,9 @@ class ListItem extends Component {
 	};
 
 	render() {
-		const { peopleList } = this.state;
+		const { itemList } = this.state;
 
-		if (!peopleList) {
+		if (!itemList) {
 			return <Loading />;
 		}
 		const content = this.renderItems();
@@ -37,4 +37,4 @@ class ListItem extends Component {
 	}
 }
 
-export { ListItem };
+export { ItemList };
