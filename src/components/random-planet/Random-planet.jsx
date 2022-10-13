@@ -27,8 +27,8 @@ class RandomPlanet extends Component {
 	};
 
 	getId = async () => {
-		const dataLength = await this.myApi.getPlanets().then((data) => data.length);
-		return this.getRandomIntInclusive(2, dataLength);
+		// const dataLength = await this.myApi.getPlanets().then((data) => data.length);
+		return this.getRandomIntInclusive(2, 19);
 	};
 
 	updatePlanet = async () => {
@@ -44,9 +44,7 @@ class RandomPlanet extends Component {
 	};
 
 	componentDidMount() {
-		this.myInt = setInterval(() => {
-			this.updatePlanet();
-		}, 4000);
+		this.myInt = setInterval(() => this.updatePlanet(), 10000);
 	}
 	componentWillUnmount() {
 		clearInterval(this.myInt);
