@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import './Item-list.css';
 import { Loading } from '../loading/Loading';
 
-
 class ItemList extends Component {
 	state = {
 		itemList: null,
 	};
 
-	dataFn = this.props.actionFn;
+	dataFn = this.props.getData;
 
 	componentDidMount() {
 		this.dataFn().then((itemList) => {
@@ -19,11 +18,14 @@ class ItemList extends Component {
 	}
 
 	renderItems = () => {
-		return this.state.itemList.map((item) => (
-			<div className='itemList-item list-group list-group-item list-group-item-action' key={item.id} onClick={() => this.props.listItemHandler(item.id)}>
-				{item.name}
-			</div>
-		));
+		return this.state.itemList.map((item) => {
+			const content = this.props.renderItems(item);
+			return (
+				<div className='itemList-item list-group list-group-item list-group-item-action' key={item.id} onClick={() => this.props.listItemHandler(item.id)}>
+					{content}
+				</div>
+			);
+		});
 	};
 
 	render() {

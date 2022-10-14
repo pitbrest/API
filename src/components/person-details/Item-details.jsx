@@ -1,38 +1,37 @@
 import React, { Component } from 'react';
-import { ApiResources } from '../api-resurses/Api-Resurs';
 import { Loading } from '../loading/Loading';
-import './Person-details.css';
+import './Item-details.css';
 
-class PersonDetails extends Component {
+class ItemDetails extends Component {
 	state = {
-		person: null,
+		item: null,
 		isLoading: true,
 	};
 
-	myApi = new ApiResources();
+	currentFn = this.props.getData;
 
-	updatePerson = () => {
+	updateItem = () => {
 		this.setState({ isLoading: true });
-		const selectedPersonId = this.props.selectedPersonId;
+		const selectedItemId = this.props.selectedItemId;
 
-		if (!selectedPersonId) {
+		if (!selectedItemId) {
 			return;
 		}
 
-		this.myApi.getPerson(selectedPersonId).then((person) => {
+		this.currentFn(selectedItemId).then((item) => {
 			this.setState({
-				person: person,
+				item: item,
 				isLoading: false,
 			});
 		});
 	};
 
 	componentDidMount() {
-		this.updatePerson();
+		this.updateItem();
 	}
 	componentDidUpdate(prevProps) {
-		if (this.props.selectedPersonId !== prevProps.selectedPersonId) {
-			this.updatePerson();
+		if (this.props.selectedItemId !== prevProps.selectedItemId) {
+			this.updateItem();
 		}
 	}
 
@@ -41,7 +40,7 @@ class PersonDetails extends Component {
 			return <Loading />;
 		}
 
-		const { id, name, gender, birthYear, eyeColor } = this.state.person;
+		const { id, name, gender, birthYear, eyeColor } = this.state.item;
 
 		return (
 			<div className='person-container'>
@@ -57,4 +56,4 @@ class PersonDetails extends Component {
 	}
 }
 
-export { PersonDetails };
+export { ItemDetails };
