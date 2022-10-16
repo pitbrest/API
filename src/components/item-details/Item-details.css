@@ -14,14 +14,17 @@
 	background: #ffff;
 	max-width: 288px;
 	height: auto;
-	border-radius: 5px;
-	
+	border-radius: 5px;	
 }
 .person-name {
 	margin-bottom: 25px;
 }
-.person-info {
+.item-info {
 	padding: 5px 10px;	
 	border-bottom: 1px solid #868686;
+}
+.item-info span{
+	padding-left: 10px;	
+	font-weight: 600;
 }
 

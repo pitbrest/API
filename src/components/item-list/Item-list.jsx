@@ -19,7 +19,7 @@ class ItemList extends Component {
 
 	renderItems = () => {
 		return this.state.itemList.map((item) => {
-			const content = this.props.renderItems(item);
+			const content = this.props.children(item);
 			return (
 				<div className='itemList-item list-group list-group-item list-group-item-action' key={item.id} onClick={() => this.props.listItemHandler(item.id)}>
 					{content}

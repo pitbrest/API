@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-
-// import { ApiResources } from './components/api-resurses/Api-Resurs';
 import { Header } from './components/header/Header';
 import { RandomPlanet } from './components/random-planet/Random-planet';
-import { ItemList } from './components/item-list/Item-list';
-import { ItemDetails } from './components/person-details/Item-details';
 import { ApiResources } from './components/api-resurses/Api-Resurs';
+// import { PeoplePage } from './components/people-page/People-page';
+import { ErrorBoundry } from './components/error-boundry/Error-boundry';
+import { ItemContainer } from './components/item-container/Item-container';
+import { ItemDetails } from './components/item-details/Item-details';
+import { ContentField } from './components/item-details/Content-field';
+
 import './App.css';
+
 
 class App extends Component {
 	state = {
@@ -21,16 +24,48 @@ class App extends Component {
 		});
 	};
 
+
 	render() {
+
+		const { getPerson, getPlanet,
+			getPersonImg, getPlanetImg } = this.myApi;
+
+		const personDetails = (
+			<ItemDetails
+				selectedItemId={1}
+				getData={getPerson}
+				getImageUrl={getPersonImg}>
+				<ContentField field='gender' label='Gender' />
+				<ContentField field='birthYear' label='Birth year' />
+				<ContentField field='eyeColor' label='Eye Color' />
+				<ContentField field='scinColor' label='Scin Color' />
+			</ItemDetails>
+		);
+
+		const planetDetails = (
+			<ItemDetails
+				selectedItemId={1}
+				getData={getPlanet}
+				getImageUrl={getPlanetImg}
+			>
+				<ContentField field='name' label='Planet Name' />
+				<ContentField field='population' label='Population' />
+				<ContentField field='diameter' label='Diameter' />
+				<ContentField field='rotationPeriod' label='Rotation Period' />
+
+			</ItemDetails>
+		);
+
 		return (
-			<>
+			<ErrorBoundry>
 				<Header />
 				<RandomPlanet />
-				<div className='content-wrapper'>
-					<ItemList listItemHandler={this.listItemHandler} getData={this.myApi.getAllPeople} renderItems={(item) => item.name} />
-					<ItemDetails selectedItemId={this.state.selectedItemId} getData={this.myApi.getPerson} />
-				</div>
-			</>
+				{/* <PeoplePage /> */}
+				<ItemContainer
+					left={personDetails}
+					right={planetDetails}
+				/>
+			</ErrorBoundry>
 		);
 	}
 }

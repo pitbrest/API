@@ -44,6 +44,7 @@ class RandomPlanet extends Component {
 	};
 
 	componentDidMount() {
+		this.updatePlanet();
 		this.myInt = setInterval(() => this.updatePlanet(), 10000);
 	}
 	componentWillUnmount() {

@@ -5,22 +5,22 @@ import './Item-details.css';
 class ItemDetails extends Component {
 	state = {
 		item: null,
+		image: null,
 		isLoading: true,
 	};
 
-	currentFn = this.props.getData;
-
 	updateItem = () => {
 		this.setState({ isLoading: true });
-		const selectedItemId = this.props.selectedItemId;
+		const { selectedItemId, getImageUrl, getData } = this.props;
 
 		if (!selectedItemId) {
 			return;
 		}
 
-		this.currentFn(selectedItemId).then((item) => {
+		getData(selectedItemId).then((item) => {
 			this.setState({
 				item: item,
+				image: getImageUrl(item.id),
 				isLoading: false,
 			});
 		});
@@ -40,16 +40,16 @@ class ItemDetails extends Component {
 			return <Loading />;
 		}
 
-		const { id, name, gender, birthYear, eyeColor } = this.state.item;
+		const { name } = this.state.item;
 
 		return (
 			<div className='person-container'>
-				<img className='person-img' src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} alt='person-img' />
+				<img className='person-img' src={this.state.image} alt='person-img' />
 				<div className='personInfo-container'>
 					<h3 className='person-name'>{name}</h3>
-					<div className='person-info'>{gender}</div>
-					<div className='person-info'>{birthYear}</div>
-					<div className='person-info'>{eyeColor}</div>
+					{React.Children.map(this.props.children, (child) => {
+						return React.cloneElement(child, { item: this.state.item });
+					})}
 				</div>
 			</div>
 		);

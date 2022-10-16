@@ -15,10 +15,10 @@ class Header extends Component {
               <a className="nav-link" href="/">People</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">Planets</a>
+              <a className="nav-link" href="/">Vehicles</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">Starships</a>
+              <a className="nav-link" href="/">Species</a>
             </li>
           </ul>
         </div>

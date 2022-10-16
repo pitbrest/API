@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class ApiResources extends Component {
 	_baseUrl = 'https://swapi.dev/api/';
+	_baseImg = 'https://starwars-visualguide.com/assets/img/';
 
 	_idExtracting = (item) => {
 		const idRegExp = /\/([0-9]*)\/$/;
@@ -35,13 +36,36 @@ class ApiResources extends Component {
 		return this._trancformPlanet(planet);
 	};
 
-	getStarships = async () => {
-		const res = await this.getResource('starships/');
-		return res.results.map(ship => this._transformStarship(ship));
+	// getVehicles = async () => {
+	// 	const res = await this.getResource('vehicles/');
+	// 	return res.results.map(vehicle => this._trancformVehicles(vehicle));
+	// };
+	// getVehicle = async (id) => {
+	// 	const vehicle = await this.getResource(`vehicles/${id}/`);
+	// 	return this._trancformVehicles(vehicle);
+	// };
+
+	getSpecies = async () => {
+		const res = await this.getResource('species/');
+		return res.results.map(specie => this._transformSpecie(specie));
 	};
-	getStarship = async (id) => {
-		const starShip = await this.getResource(`starships/${id}/`);
-		return this._transformStarship(starShip);
+	getSpecie = async (id) => {
+		const specie = await this.getResource(`species/${id}/`);
+		return this._transformSpecie(specie);
+	};
+
+	getPersonImg = (id) => {
+		return this._baseImg + `characters/${id}.jpg`;
+	};
+	// getVehicleImg = (id) => {
+	// 	return this._baseImg + `vehicles/${id}.jpg`;
+	// };
+	getSpecieImg = (id) => {
+		return this._baseImg + `species/${id}.jpg`;
+	};
+	getPlanetImg = (id) => {
+		return (id !== '1' ?
+			this._baseImg + `planets/${id}.jpg` : this._baseImg + `planets/19.jpg`);
 	};
 
 	_transformPerson = (person) => {
@@ -51,35 +75,44 @@ class ApiResources extends Component {
 			gender: person.gender,
 			birthYear: person.birth_year,
 			eyeColor: person.eye_color,
+			scinColor: person.skin_color
+		};
+	};
+	// _trancformVehicles = (vehicle) => {
+	// 	return {
+	// 		id: this._idExtracting(vehicle),
+	// 		name: vehicle.name,
+	// 		model: vehicle.model,
+	// 		length: vehicle.length,
+	// 		speed: vehicle.max_atmosphering_speed,
+	// 		cost: vehicle.cost_in_credits
+	// 	};
+	// };
+	_transformSpecie = (specie) => {
+		return {
+			id: this._idExtracting(specie),
+			name: specie.name,
+			classification: specie.classification,
+			designation: specie.designation,
+			height: specie.average_height,
+			lifespan: specie.average_lifespan
 		};
 	};
 	_trancformPlanet = (planet) => {
 		return {
 			id: this._idExtracting(planet),
-			planetName: planet.name,
+			name: planet.name,
 			population: planet.population,
 			rotationPeriod: planet.rotation_period,
 			diameter: planet.diameter,
 		};
 	};
-	_transformStarship = (starship) => {
-		return {
-			id: this._idExtracting(starship),
-			name: starship.name,
-			model: starship.model,
-			manufacturer: starship.manufacturer,
-			costInCredits: starship.cost_in_credits,
-			length: starship.length,
-			crew: starship.crew,
-			passengers: starship.passengers,
-			cargoCapacity: starship.cargo_capacity,
-		};
-	};
 
 	render() {
-		console.log('hello');
-		return <div>Api-Resurs</div>;
+		return <></>;
 	}
 }
 
 export { ApiResources };
+
+
