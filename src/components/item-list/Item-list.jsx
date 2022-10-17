@@ -1,42 +1,28 @@
-import React, { Component } from 'react';
 import './Item-list.css';
-import { Loading } from '../loading/Loading';
+import { ApiResources } from '../api-resurses/Api-Resurs';
+import withData from '../hoc-helpers/with-data';
 
-class ItemList extends Component {
-	state = {
-		itemList: null,
-	};
+const ItemList = (props) => {
 
-	dataFn = this.props.getData;
+	const { data, listItemHandler, children: renderItems } = props;
 
-	componentDidMount() {
-		this.dataFn().then((itemList) => {
-			this.setState({
-				itemList: itemList,
-			});
-		});
-	}
+	const items = data.map((item) => {
+		const content = renderItems(item);
 
-	renderItems = () => {
-		return this.state.itemList.map((item) => {
-			const content = this.props.children(item);
-			return (
-				<div className='itemList-item list-group list-group-item list-group-item-action' key={item.id} onClick={() => this.props.listItemHandler(item.id)}>
-					{content}
-				</div>
-			);
-		});
-	};
+		return (
+			<div className='itemList-item list-group list-group-item list-group-item-action' key={item.id} onClick={() => listItemHandler(item.id)}>
+				{content}
+			</div>
+		);
+	});
 
-	render() {
-		const { itemList } = this.state;
+	return (
+		<div className='item-list'>{items}</div>
+	);
+};
 
-		if (!itemList) {
-			return <Loading />;
-		}
-		const content = this.renderItems();
-		return <div className='item-list'>{content}</div>;
-	}
-}
 
-export { ItemList };
+const { getAllPeople } = new ApiResources();
+
+export default withData(ItemList, getAllPeople)
+

@@ -7,6 +7,7 @@ import { ErrorBoundry } from './components/error-boundry/Error-boundry';
 import { ItemContainer } from './components/item-container/Item-container';
 import { ItemDetails } from './components/item-details/Item-details';
 import { ContentField } from './components/item-details/Content-field';
+import ItemList from './components/item-list';
 
 import './App.css';
 
@@ -60,11 +61,14 @@ class App extends Component {
 			<ErrorBoundry>
 				<Header />
 				<RandomPlanet />
+				<ItemList getData={this.myApi.getAllPeople} >
+					{item => item.name}
+				</ItemList>
 				{/* <PeoplePage /> */}
-				<ItemContainer
+				{/* <ItemContainer
 					left={personDetails}
 					right={planetDetails}
-				/>
+				/> */}
 			</ErrorBoundry>
 		);
 	}
