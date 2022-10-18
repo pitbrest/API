@@ -7,8 +7,9 @@ import { ErrorBoundry } from './components/error-boundry/Error-boundry';
 import { ItemContainer } from './components/item-container/Item-container';
 import { ItemDetails } from './components/item-details/Item-details';
 import { ContentField } from './components/item-details/Content-field';
-
+import WithData from './components/item-list/with-data';
 import './App.css';
+
 
 
 class App extends Component {
@@ -23,7 +24,6 @@ class App extends Component {
 			selectedItemId: id,
 		});
 	};
-
 
 	render() {
 
@@ -65,6 +65,13 @@ class App extends Component {
 					left={personDetails}
 					right={planetDetails}
 				/>
+				<WithData
+					listItemHandler={this.listItemHandler}
+				>
+					{(item) => item.name}
+				</WithData>
+
+
 			</ErrorBoundry>
 		);
 	}
