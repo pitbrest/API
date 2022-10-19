@@ -7,9 +7,9 @@ import { ErrorBoundry } from './components/error-boundry/Error-boundry';
 import { ItemContainer } from './components/item-container/Item-container';
 import { ItemDetails } from './components/item-details/Item-details';
 import { ContentField } from './components/item-details/Content-field';
+import ItemsData from './components/items-data/Item-data';
 
 import './App.css';
-
 
 class App extends Component {
 	state = {
@@ -24,17 +24,11 @@ class App extends Component {
 		});
 	};
 
-
 	render() {
-
-		const { getPerson, getPlanet,
-			getPersonImg, getPlanetImg } = this.myApi;
+		const { getPerson, getPlanet, getPersonImg, getPlanetImg } = this.myApi;
 
 		const personDetails = (
-			<ItemDetails
-				selectedItemId={1}
-				getData={getPerson}
-				getImageUrl={getPersonImg}>
+			<ItemDetails selectedItemId={1} getData={getPerson} getImageUrl={getPersonImg}>
 				<ContentField field='gender' label='Gender' />
 				<ContentField field='birthYear' label='Birth year' />
 				<ContentField field='eyeColor' label='Eye Color' />
@@ -43,16 +37,11 @@ class App extends Component {
 		);
 
 		const planetDetails = (
-			<ItemDetails
-				selectedItemId={1}
-				getData={getPlanet}
-				getImageUrl={getPlanetImg}
-			>
+			<ItemDetails selectedItemId={1} getData={getPlanet} getImageUrl={getPlanetImg}>
 				<ContentField field='name' label='Planet Name' />
 				<ContentField field='population' label='Population' />
 				<ContentField field='diameter' label='Diameter' />
 				<ContentField field='rotationPeriod' label='Rotation Period' />
-
 			</ItemDetails>
 		);
 
@@ -61,10 +50,8 @@ class App extends Component {
 				<Header />
 				<RandomPlanet />
 				{/* <PeoplePage /> */}
-				<ItemContainer
-					left={personDetails}
-					right={planetDetails}
-				/>
+				<ItemContainer left={personDetails} right={planetDetails} />
+				<ItemsData listItemHandler={this.listItemHandler}>{(item) => item.name}</ItemsData>
 			</ErrorBoundry>
 		);
 	}

@@ -27,7 +27,6 @@ class RandomPlanet extends Component {
 	};
 
 	getId = async () => {
-		// const dataLength = await this.myApi.getPlanets().then((data) => data.length);
 		return this.getRandomIntInclusive(2, 19);
 	};
 
@@ -73,7 +72,7 @@ const SectionView = ({ planet, isLoading, error }) => {
 				<>
 					<img src={planet.img} className='planet-img' alt='planet-img' />
 					<div className='planetInfo-container'>
-						<h2 className='planet-title'>{planet.planetName}</h2>
+						<h2 className='planet-title'>{planet.name}</h2>
 						<div className='planet-info'>
 							<p className='planetInfo-text'>
 								Population <span>{planet.population}</span>
