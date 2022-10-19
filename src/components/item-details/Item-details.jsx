@@ -9,6 +9,15 @@ class ItemDetails extends Component {
 		isLoading: true,
 	};
 
+	componentDidMount() {
+		this.updateItem();
+	}
+	componentDidUpdate(prevProps) {
+		if (this.props.selectedItemId !== prevProps.selectedItemId) {
+			this.updateItem();
+		}
+	}
+
 	updateItem = () => {
 		this.setState({ isLoading: true });
 		const { selectedItemId, getImageUrl, getData } = this.props;
@@ -26,21 +35,13 @@ class ItemDetails extends Component {
 		});
 	};
 
-	componentDidMount() {
-		this.updateItem();
-	}
-	componentDidUpdate(prevProps) {
-		if (this.props.selectedItemId !== prevProps.selectedItemId) {
-			this.updateItem();
-		}
-	}
 
 	render() {
 		if (this.state.isLoading) {
 			return <Loading />;
 		}
 
-		const { name } = this.state.item;
+		const name = this.state.item.name;
 
 		return (
 			<div className='person-container'>

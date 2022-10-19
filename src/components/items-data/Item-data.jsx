@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { ItemList } from '../item-list/Item-list';
 import { Loading } from '../loading/Loading';
-import { ApiResources } from '../api-resurses/Api-Resurs';
 
 const ItemsData = (getData, WrappedComponent) => {
 	return class extends Component {
@@ -28,7 +26,5 @@ const ItemsData = (getData, WrappedComponent) => {
 	};
 };
 
-const myApi = new ApiResources();
-const { getAllPeople } = myApi;
 
-export default ItemsData(getAllPeople, ItemList);
+export default ItemsData;

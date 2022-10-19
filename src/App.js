@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { Header } from './components/header/Header';
 import { RandomPlanet } from './components/random-planet/Random-planet';
 import { ApiResources } from './components/api-resurses/Api-Resurs';
-// import { PeoplePage } from './components/people-page/People-page';
 import { ErrorBoundry } from './components/error-boundry/Error-boundry';
-import { ItemContainer } from './components/item-container/Item-container';
-import { ItemDetails } from './components/item-details/Item-details';
-import { ContentField } from './components/item-details/Content-field';
-import ItemsData from './components/items-data/Item-data';
-
+import {
+	PersonList,
+	PlanetList,
+	SpecieList,
+	PersonDetails,
+	PlanetDetails,
+	SpecieDetails
+} from './components/sw-components/index';
 import './App.css';
 
 class App extends Component {
@@ -25,33 +27,28 @@ class App extends Component {
 	};
 
 	render() {
-		const { getPerson, getPlanet, getPersonImg, getPlanetImg } = this.myApi;
-
-		const personDetails = (
-			<ItemDetails selectedItemId={1} getData={getPerson} getImageUrl={getPersonImg}>
-				<ContentField field='gender' label='Gender' />
-				<ContentField field='birthYear' label='Birth year' />
-				<ContentField field='eyeColor' label='Eye Color' />
-				<ContentField field='scinColor' label='Scin Color' />
-			</ItemDetails>
-		);
-
-		const planetDetails = (
-			<ItemDetails selectedItemId={1} getData={getPlanet} getImageUrl={getPlanetImg}>
-				<ContentField field='name' label='Planet Name' />
-				<ContentField field='population' label='Population' />
-				<ContentField field='diameter' label='Diameter' />
-				<ContentField field='rotationPeriod' label='Rotation Period' />
-			</ItemDetails>
-		);
-
 		return (
 			<ErrorBoundry>
 				<Header />
 				<RandomPlanet />
 				{/* <PeoplePage /> */}
-				<ItemContainer left={personDetails} right={planetDetails} />
-				<ItemsData listItemHandler={this.listItemHandler}>{(item) => item.name}</ItemsData>
+				{/* <ItemContainer left={personDetails} right={planetDetails} /> */}
+				{/* <ItemsData listItemHandler={this.listItemHandler}>
+					{(item) => item.name}
+				</ItemsData> */}
+				<PersonDetails itemId={10} />
+				<PlanetDetails itemId={10} />
+				<SpecieDetails itemId={10} />
+
+				<PersonList>
+					{(item) => item.name}
+				</PersonList>
+				<PlanetList>
+					{(item) => item.name}
+				</PlanetList>
+				<SpecieList>
+					{(item) => item.name}
+				</SpecieList>
 			</ErrorBoundry>
 		);
 	}

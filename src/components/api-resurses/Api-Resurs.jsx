@@ -36,15 +36,6 @@ class ApiResources extends Component {
 		return this._trancformPlanet(planet);
 	};
 
-	// getVehicles = async () => {
-	// 	const res = await this.getResource('vehicles/');
-	// 	return res.results.map(vehicle => this._trancformVehicles(vehicle));
-	// };
-	// getVehicle = async (id) => {
-	// 	const vehicle = await this.getResource(`vehicles/${id}/`);
-	// 	return this._trancformVehicles(vehicle);
-	// };
-
 	getSpecies = async () => {
 		const res = await this.getResource('species/');
 		return res.results.map(specie => this._transformSpecie(specie));
@@ -57,9 +48,6 @@ class ApiResources extends Component {
 	getPersonImg = (id) => {
 		return this._baseImg + `characters/${id}.jpg`;
 	};
-	// getVehicleImg = (id) => {
-	// 	return this._baseImg + `vehicles/${id}.jpg`;
-	// };
 	getSpecieImg = (id) => {
 		return this._baseImg + `species/${id}.jpg`;
 	};
@@ -78,16 +66,6 @@ class ApiResources extends Component {
 			scinColor: person.skin_color
 		};
 	};
-	// _trancformVehicles = (vehicle) => {
-	// 	return {
-	// 		id: this._idExtracting(vehicle),
-	// 		name: vehicle.name,
-	// 		model: vehicle.model,
-	// 		length: vehicle.length,
-	// 		speed: vehicle.max_atmosphering_speed,
-	// 		cost: vehicle.cost_in_credits
-	// 	};
-	// };
 	_transformSpecie = (specie) => {
 		return {
 			id: this._idExtracting(specie),
@@ -116,3 +94,27 @@ class ApiResources extends Component {
 export { ApiResources };
 
 
+
+	// getVehicles = async () => {
+	// 	const res = await this.getResource('vehicles/');
+	// 	return res.results.map(vehicle => this._trancformVehicles(vehicle));
+	// };
+	// getVehicle = async (id) => {
+	// 	const vehicle = await this.getResource(`vehicles/${id}/`);
+	// 	return this._trancformVehicles(vehicle);
+	// };
+
+		// getVehicleImg = (id) => {
+	// 	return this._baseImg + `vehicles/${id}.jpg`;
+	// };
+
+		// _trancformVehicles = (vehicle) => {
+	// 	return {
+	// 		id: this._idExtracting(vehicle),
+	// 		name: vehicle.name,
+	// 		model: vehicle.model,
+	// 		length: vehicle.length,
+	// 		speed: vehicle.max_atmosphering_speed,
+	// 		cost: vehicle.cost_in_credits
+	// 	};
+	// };
