@@ -14,6 +14,7 @@ const ItemsData = (getData, WrappedComponent) => {
 				});
 			});
 		}
+
 		render() {
 			const { data } = this.state;
 
@@ -26,5 +27,4 @@ const ItemsData = (getData, WrappedComponent) => {
 	};
 };
 
-
-export default ItemsData;
+export { ItemsData };

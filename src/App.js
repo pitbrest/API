@@ -3,14 +3,7 @@ import { Header } from './components/header/Header';
 import { RandomPlanet } from './components/random-planet/Random-planet';
 import { ApiResources } from './components/api-resurses/Api-Resurs';
 import { ErrorBoundry } from './components/error-boundry/Error-boundry';
-import {
-	PersonList,
-	PlanetList,
-	SpecieList,
-	PersonDetails,
-	PlanetDetails,
-	SpecieDetails
-} from './components/sw-components/index';
+import { PersonList, PlanetList, SpecieList, PersonDetails, PlanetDetails, SpecieDetails } from './components/sw-components/index';
 import './App.css';
 
 class App extends Component {
@@ -40,15 +33,10 @@ class App extends Component {
 				<PlanetDetails itemId={10} />
 				<SpecieDetails itemId={10} />
 
-				<PersonList>
-					{(item) => item.name}
-				</PersonList>
-				<PlanetList>
-					{(item) => item.name}
-				</PlanetList>
-				<SpecieList>
-					{(item) => item.name}
-				</SpecieList>
+				<PersonList></PersonList>
+
+				<PlanetList>{(item) => item.name}</PlanetList>
+				<SpecieList>{(item) => item.name}</SpecieList>
 			</ErrorBoundry>
 		);
 	}
